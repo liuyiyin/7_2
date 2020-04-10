@@ -9,10 +9,13 @@ using namespace std;
 int main()
 {
 	cv::Mat src = cv::imread("D:\\metal-part-distorted-03.png", 1); 
+
 	cv::Mat canny;
 	Canny(src, canny, 20, 170);
+
 	std::vector<cv::Vec2f> lines;
 	cv::HoughLines(canny, lines, 1, CV_PI / 180, 90);
+
 	std::vector<cv::Vec2f>::iterator it = lines.begin();
 	for(; it != lines.end(); ++it) {
 		float rho = (*it)[0], theta = (*it)[1];
